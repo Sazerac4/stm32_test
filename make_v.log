@@ -1,0 +1,1174 @@
+mkdir build		
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/main.d" -Wa,-a,-ad,-alms=build/main.lst Core/Src/main.c -o build/main.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/main.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/main.d' '-o' 'build/main.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/main.d -MF build/main.d -MP -MQ build/main.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Core/Src/main.c -quiet -dumpdir build/ -dumpbase main.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccaphm9i.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+Core/Src/main.c: In function 'main':
+Core/Src/main.c:151:25: warning: format '%u' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  151 |     sprintf(buf,"%u,%u,%u,%u,%u,%u,%u,%u\n\r",(uint8_t)sample_cnt%256,sample,filtered_sample7,filtered_sample15,filtered_sample31,cycles7,cycles15,cycles31);
+      |                        ~^                                                    ~~~~~~~~~~~~~~~~
+      |                         |                                                    |
+      |                         unsigned int                                         uint32_t {aka long unsigned int}
+      |                        %lu
+Core/Src/main.c:151:28: warning: format '%u' expects argument of type 'unsigned int', but argument 6 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  151 |     sprintf(buf,"%u,%u,%u,%u,%u,%u,%u,%u\n\r",(uint8_t)sample_cnt%256,sample,filtered_sample7,filtered_sample15,filtered_sample31,cycles7,cycles15,cycles31);
+      |                           ~^                                                                  ~~~~~~~~~~~~~~~~~
+      |                            |                                                                  |
+      |                            unsigned int                                                       uint32_t {aka long unsigned int}
+      |                           %lu
+Core/Src/main.c:151:31: warning: format '%u' expects argument of type 'unsigned int', but argument 7 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  151 |     sprintf(buf,"%u,%u,%u,%u,%u,%u,%u,%u\n\r",(uint8_t)sample_cnt%256,sample,filtered_sample7,filtered_sample15,filtered_sample31,cycles7,cycles15,cycles31);
+      |                              ~^                                                                                 ~~~~~~~~~~~~~~~~~
+      |                               |                                                                                 |
+      |                               unsigned int                                                                      uint32_t {aka long unsigned int}
+      |                              %lu
+Core/Src/main.c:151:34: warning: format '%u' expects argument of type 'unsigned int', but argument 8 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  151 |     sprintf(buf,"%u,%u,%u,%u,%u,%u,%u,%u\n\r",(uint8_t)sample_cnt%256,sample,filtered_sample7,filtered_sample15,filtered_sample31,cycles7,cycles15,cycles31);
+      |                                 ~^                                                                                                ~~~~~~~
+      |                                  |                                                                                                |
+      |                                  unsigned int                                                                                     uint32_t {aka long unsigned int}
+      |                                 %lu
+Core/Src/main.c:151:37: warning: format '%u' expects argument of type 'unsigned int', but argument 9 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  151 |     sprintf(buf,"%u,%u,%u,%u,%u,%u,%u,%u\n\r",(uint8_t)sample_cnt%256,sample,filtered_sample7,filtered_sample15,filtered_sample31,cycles7,cycles15,cycles31);
+      |                                    ~^                                                                                                     ~~~~~~~~
+      |                                     |                                                                                                     |
+      |                                     unsigned int                                                                                          uint32_t {aka long unsigned int}
+      |                                    %lu
+Core/Src/main.c:151:40: warning: format '%u' expects argument of type 'unsigned int', but argument 10 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  151 |     sprintf(buf,"%u,%u,%u,%u,%u,%u,%u,%u\n\r",(uint8_t)sample_cnt%256,sample,filtered_sample7,filtered_sample15,filtered_sample31,cycles7,cycles15,cycles31);
+      |                                       ~^                                                                                                           ~~~~~~~~
+      |                                        |                                                                                                           |
+      |                                        unsigned int                                                                                                uint32_t {aka long unsigned int}
+      |                                       %lu
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/main.d' '-o' 'build/main.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/main.lst -o build/main.o /tmp/ccaphm9i.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/main.d' '-o' 'build/main.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/main.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/MedianFilter.d" -Wa,-a,-ad,-alms=build/MedianFilter.lst Core/Src/MedianFilter.c -o build/MedianFilter.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/MedianFilter.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/MedianFilter.d' '-o' 'build/MedianFilter.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/MedianFilter.d -MF build/MedianFilter.d -MP -MQ build/MedianFilter.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Core/Src/MedianFilter.c -quiet -dumpdir build/ -dumpbase MedianFilter.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccmQhjSu.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/MedianFilter.d' '-o' 'build/MedianFilter.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/MedianFilter.lst -o build/MedianFilter.o /tmp/ccmQhjSu.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/MedianFilter.d' '-o' 'build/MedianFilter.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/MedianFilter.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_it.d" -Wa,-a,-ad,-alms=build/stm32f4xx_it.lst Core/Src/stm32f4xx_it.c -o build/stm32f4xx_it.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_it.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_it.d' '-o' 'build/stm32f4xx_it.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_it.d -MF build/stm32f4xx_it.d -MP -MQ build/stm32f4xx_it.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Core/Src/stm32f4xx_it.c -quiet -dumpdir build/ -dumpbase stm32f4xx_it.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccHWg62X.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_it.d' '-o' 'build/stm32f4xx_it.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_it.lst -o build/stm32f4xx_it.o /tmp/ccHWg62X.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_it.d' '-o' 'build/stm32f4xx_it.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_it.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_msp.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_msp.lst Core/Src/stm32f4xx_hal_msp.c -o build/stm32f4xx_hal_msp.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_msp.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_msp.d' '-o' 'build/stm32f4xx_hal_msp.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_msp.d -MF build/stm32f4xx_hal_msp.d -MP -MQ build/stm32f4xx_hal_msp.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Core/Src/stm32f4xx_hal_msp.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_msp.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/cc9SQ8pR.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_msp.d' '-o' 'build/stm32f4xx_hal_msp.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_msp.lst -o build/stm32f4xx_hal_msp.o /tmp/cc9SQ8pR.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_msp.d' '-o' 'build/stm32f4xx_hal_msp.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_msp.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_tim.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_tim.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c -o build/stm32f4xx_hal_tim.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_tim.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_tim.d' '-o' 'build/stm32f4xx_hal_tim.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_tim.d -MF build/stm32f4xx_hal_tim.d -MP -MQ build/stm32f4xx_hal_tim.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_tim.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccbE5bgq.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_tim.d' '-o' 'build/stm32f4xx_hal_tim.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_tim.lst -o build/stm32f4xx_hal_tim.o /tmp/ccbE5bgq.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_tim.d' '-o' 'build/stm32f4xx_hal_tim.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_tim.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_tim_ex.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_tim_ex.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c -o build/stm32f4xx_hal_tim_ex.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_tim_ex.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_tim_ex.d' '-o' 'build/stm32f4xx_hal_tim_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_tim_ex.d -MF build/stm32f4xx_hal_tim_ex.d -MP -MQ build/stm32f4xx_hal_tim_ex.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_tim_ex.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccl2TaVD.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_tim_ex.d' '-o' 'build/stm32f4xx_hal_tim_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_tim_ex.lst -o build/stm32f4xx_hal_tim_ex.o /tmp/ccl2TaVD.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_tim_ex.d' '-o' 'build/stm32f4xx_hal_tim_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_tim_ex.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_uart.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_uart.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c -o build/stm32f4xx_hal_uart.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_uart.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_uart.d' '-o' 'build/stm32f4xx_hal_uart.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_uart.d -MF build/stm32f4xx_hal_uart.d -MP -MQ build/stm32f4xx_hal_uart.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_uart.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccU1tKK5.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_uart.d' '-o' 'build/stm32f4xx_hal_uart.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_uart.lst -o build/stm32f4xx_hal_uart.o /tmp/ccU1tKK5.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_uart.d' '-o' 'build/stm32f4xx_hal_uart.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_uart.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_rcc.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_rcc.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c -o build/stm32f4xx_hal_rcc.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_rcc.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_rcc.d' '-o' 'build/stm32f4xx_hal_rcc.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_rcc.d -MF build/stm32f4xx_hal_rcc.d -MP -MQ build/stm32f4xx_hal_rcc.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_rcc.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccJPNB3O.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_rcc.d' '-o' 'build/stm32f4xx_hal_rcc.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_rcc.lst -o build/stm32f4xx_hal_rcc.o /tmp/ccJPNB3O.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_rcc.d' '-o' 'build/stm32f4xx_hal_rcc.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_rcc.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_rcc_ex.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_rcc_ex.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c -o build/stm32f4xx_hal_rcc_ex.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_rcc_ex.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_rcc_ex.d' '-o' 'build/stm32f4xx_hal_rcc_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_rcc_ex.d -MF build/stm32f4xx_hal_rcc_ex.d -MP -MQ build/stm32f4xx_hal_rcc_ex.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_rcc_ex.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccJaXmvF.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_rcc_ex.d' '-o' 'build/stm32f4xx_hal_rcc_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_rcc_ex.lst -o build/stm32f4xx_hal_rcc_ex.o /tmp/ccJaXmvF.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_rcc_ex.d' '-o' 'build/stm32f4xx_hal_rcc_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_rcc_ex.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_flash.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_flash.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c -o build/stm32f4xx_hal_flash.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_flash.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_flash.d' '-o' 'build/stm32f4xx_hal_flash.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_flash.d -MF build/stm32f4xx_hal_flash.d -MP -MQ build/stm32f4xx_hal_flash.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_flash.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccyrzWy3.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_flash.d' '-o' 'build/stm32f4xx_hal_flash.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_flash.lst -o build/stm32f4xx_hal_flash.o /tmp/ccyrzWy3.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_flash.d' '-o' 'build/stm32f4xx_hal_flash.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_flash.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_flash_ex.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_flash_ex.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c -o build/stm32f4xx_hal_flash_ex.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_flash_ex.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_flash_ex.d' '-o' 'build/stm32f4xx_hal_flash_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_flash_ex.d -MF build/stm32f4xx_hal_flash_ex.d -MP -MQ build/stm32f4xx_hal_flash_ex.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_flash_ex.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccHG1mBL.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_flash_ex.d' '-o' 'build/stm32f4xx_hal_flash_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_flash_ex.lst -o build/stm32f4xx_hal_flash_ex.o /tmp/ccHG1mBL.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_flash_ex.d' '-o' 'build/stm32f4xx_hal_flash_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_flash_ex.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_flash_ramfunc.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_flash_ramfunc.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c -o build/stm32f4xx_hal_flash_ramfunc.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_flash_ramfunc.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_flash_ramfunc.d' '-o' 'build/stm32f4xx_hal_flash_ramfunc.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_flash_ramfunc.d -MF build/stm32f4xx_hal_flash_ramfunc.d -MP -MQ build/stm32f4xx_hal_flash_ramfunc.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_flash_ramfunc.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccaHTbeu.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_flash_ramfunc.d' '-o' 'build/stm32f4xx_hal_flash_ramfunc.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_flash_ramfunc.lst -o build/stm32f4xx_hal_flash_ramfunc.o /tmp/ccaHTbeu.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_flash_ramfunc.d' '-o' 'build/stm32f4xx_hal_flash_ramfunc.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_flash_ramfunc.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_gpio.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_gpio.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c -o build/stm32f4xx_hal_gpio.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_gpio.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_gpio.d' '-o' 'build/stm32f4xx_hal_gpio.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_gpio.d -MF build/stm32f4xx_hal_gpio.d -MP -MQ build/stm32f4xx_hal_gpio.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_gpio.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccYoVlhn.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_gpio.d' '-o' 'build/stm32f4xx_hal_gpio.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_gpio.lst -o build/stm32f4xx_hal_gpio.o /tmp/ccYoVlhn.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_gpio.d' '-o' 'build/stm32f4xx_hal_gpio.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_gpio.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_dma_ex.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_dma_ex.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c -o build/stm32f4xx_hal_dma_ex.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_dma_ex.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_dma_ex.d' '-o' 'build/stm32f4xx_hal_dma_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_dma_ex.d -MF build/stm32f4xx_hal_dma_ex.d -MP -MQ build/stm32f4xx_hal_dma_ex.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_dma_ex.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/cc5HbNIZ.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_dma_ex.d' '-o' 'build/stm32f4xx_hal_dma_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_dma_ex.lst -o build/stm32f4xx_hal_dma_ex.o /tmp/cc5HbNIZ.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_dma_ex.d' '-o' 'build/stm32f4xx_hal_dma_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_dma_ex.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_dma.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_dma.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c -o build/stm32f4xx_hal_dma.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_dma.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_dma.d' '-o' 'build/stm32f4xx_hal_dma.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_dma.d -MF build/stm32f4xx_hal_dma.d -MP -MQ build/stm32f4xx_hal_dma.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_dma.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccJXEr0X.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_dma.d' '-o' 'build/stm32f4xx_hal_dma.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_dma.lst -o build/stm32f4xx_hal_dma.o /tmp/ccJXEr0X.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_dma.d' '-o' 'build/stm32f4xx_hal_dma.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_dma.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_pwr.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_pwr.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c -o build/stm32f4xx_hal_pwr.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_pwr.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_pwr.d' '-o' 'build/stm32f4xx_hal_pwr.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_pwr.d -MF build/stm32f4xx_hal_pwr.d -MP -MQ build/stm32f4xx_hal_pwr.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_pwr.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccQR2mr3.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_pwr.d' '-o' 'build/stm32f4xx_hal_pwr.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_pwr.lst -o build/stm32f4xx_hal_pwr.o /tmp/ccQR2mr3.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_pwr.d' '-o' 'build/stm32f4xx_hal_pwr.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_pwr.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_pwr_ex.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_pwr_ex.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c -o build/stm32f4xx_hal_pwr_ex.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_pwr_ex.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_pwr_ex.d' '-o' 'build/stm32f4xx_hal_pwr_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_pwr_ex.d -MF build/stm32f4xx_hal_pwr_ex.d -MP -MQ build/stm32f4xx_hal_pwr_ex.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_pwr_ex.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccHYa84t.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_pwr_ex.d' '-o' 'build/stm32f4xx_hal_pwr_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_pwr_ex.lst -o build/stm32f4xx_hal_pwr_ex.o /tmp/ccHYa84t.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_pwr_ex.d' '-o' 'build/stm32f4xx_hal_pwr_ex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_pwr_ex.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_cortex.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_cortex.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c -o build/stm32f4xx_hal_cortex.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_cortex.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_cortex.d' '-o' 'build/stm32f4xx_hal_cortex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_cortex.d -MF build/stm32f4xx_hal_cortex.d -MP -MQ build/stm32f4xx_hal_cortex.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_cortex.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccVAgRUI.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_cortex.d' '-o' 'build/stm32f4xx_hal_cortex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_cortex.lst -o build/stm32f4xx_hal_cortex.o /tmp/ccVAgRUI.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_cortex.d' '-o' 'build/stm32f4xx_hal_cortex.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_cortex.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c -o build/stm32f4xx_hal.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal.d' '-o' 'build/stm32f4xx_hal.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal.d -MF build/stm32f4xx_hal.d -MP -MQ build/stm32f4xx_hal.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/cc3UHJHm.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal.d' '-o' 'build/stm32f4xx_hal.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal.lst -o build/stm32f4xx_hal.o /tmp/cc3UHJHm.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal.d' '-o' 'build/stm32f4xx_hal.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/stm32f4xx_hal_exti.d" -Wa,-a,-ad,-alms=build/stm32f4xx_hal_exti.lst Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c -o build/stm32f4xx_hal_exti.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/stm32f4xx_hal_exti.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_exti.d' '-o' 'build/stm32f4xx_hal_exti.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/stm32f4xx_hal_exti.d -MF build/stm32f4xx_hal_exti.d -MP -MQ build/stm32f4xx_hal_exti.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c -quiet -dumpdir build/ -dumpbase stm32f4xx_hal_exti.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccYzhEOq.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_exti.d' '-o' 'build/stm32f4xx_hal_exti.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/stm32f4xx_hal_exti.lst -o build/stm32f4xx_hal_exti.o /tmp/ccYzhEOq.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/stm32f4xx_hal_exti.d' '-o' 'build/stm32f4xx_hal_exti.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/stm32f4xx_hal_exti.'
+arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/system_stm32f4xx.d" -Wa,-a,-ad,-alms=build/system_stm32f4xx.lst Core/Src/system_stm32f4xx.c -o build/system_stm32f4xx.o
+Using built-in specs.
+COLLECT_AS_OPTIONS='-a' '-ad' '-alms=build/system_stm32f4xx.lst'
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/system_stm32f4xx.d' '-o' 'build/system_stm32f4xx.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/system_stm32f4xx.d -MF build/system_stm32f4xx.d -MP -MQ build/system_stm32f4xx.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx Core/Src/system_stm32f4xx.c -quiet -dumpdir build/ -dumpbase system_stm32f4xx.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -g -gdwarf-2 -Og -Wall -version -fdata-sections -ffunction-sections -o /tmp/ccSjTfAo.s
+GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
+
+warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/system_stm32f4xx.d' '-o' 'build/system_stm32f4xx.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -a -ad -alms=build/system_stm32f4xx.lst -o build/system_stm32f4xx.o /tmp/ccSjTfAo.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/system_stm32f4xx.d' '-o' 'build/system_stm32f4xx.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/system_stm32f4xx.'
+arm-none-eabi-gcc -x assembler-with-cpp -c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DUSE_HAL_DRIVER -DSTM32F446xx -ICore/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32F4xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -v  -g -gdwarf-2 -MMD -MP -MF"build/startup_stm32f446xx.d" startup_stm32f446xx.s -o build/startup_stm32f446xx.o
+Using built-in specs.
+COLLECT_GCC=arm-none-eabi-gcc
+Target: arm-none-eabi
+Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 13.2.0 (Arch Repository) 
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/startup_stm32f446xx.d' '-o' 'build/startup_stm32f446xx.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -E -lang-asm -quiet -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -imultilib thumb/v7e-m+fp/hard -MMD build/startup_stm32f446xx.d -MF build/startup_stm32f446xx.d -MP -MQ build/startup_stm32f446xx.o -D__USES_INITFINI__ -D USE_HAL_DRIVER -D STM32F446xx startup_stm32f446xx.s -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -Wall -fdata-sections -ffunction-sections -g -gdwarf-2 -fworking-directory -Og -fno-directives-only -o /tmp/ccFEPugf.s
+ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
+ignoring duplicate directory "/usr/arm-none-eabi/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ Core/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc
+ Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ Drivers/CMSIS/Include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include
+ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
+End of search list.
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/startup_stm32f446xx.d' '-o' 'build/startup_stm32f446xx.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/'
+ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as --gdwarf2 -v -I Core/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc -I Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I Drivers/CMSIS/Device/ST/STM32F4xx/Include -I Drivers/CMSIS/Include -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -o build/startup_stm32f446xx.o /tmp/ccFEPugf.s
+GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
+COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
+LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
+COLLECT_GCC_OPTIONS='-c' '-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-D' 'USE_HAL_DRIVER' '-D' 'STM32F446xx' '-I' 'Core/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc' '-I' 'Drivers/STM32F4xx_HAL_Driver/Inc/Legacy' '-I' 'Drivers/CMSIS/Device/ST/STM32F4xx/Include' '-I' 'Drivers/CMSIS/Include' '-Og' '-Wall' '-fdata-sections' '-ffunction-sections' '-v' '-g' '-gdwarf-2' '-MMD' '-MP' '-MF' 'build/startup_stm32f446xx.d' '-o' 'build/startup_stm32f446xx.o' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'build/startup_stm32f446xx.'
+arm-none-eabi-gcc build/main.o build/MedianFilter.o build/stm32f4xx_it.o build/stm32f4xx_hal_msp.o build/stm32f4xx_hal_tim.o build/stm32f4xx_hal_tim_ex.o build/stm32f4xx_hal_uart.o build/stm32f4xx_hal_rcc.o build/stm32f4xx_hal_rcc_ex.o build/stm32f4xx_hal_flash.o build/stm32f4xx_hal_flash_ex.o build/stm32f4xx_hal_flash_ramfunc.o build/stm32f4xx_hal_gpio.o build/stm32f4xx_hal_dma_ex.o build/stm32f4xx_hal_dma.o build/stm32f4xx_hal_pwr.o build/stm32f4xx_hal_pwr_ex.o build/stm32f4xx_hal_cortex.o build/stm32f4xx_hal.o build/stm32f4xx_hal_exti.o build/system_stm32f4xx.o build/startup_stm32f446xx.o -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -specs=nano.specs -TSTM32F446RETx_FLASH.ld  -lc -lm -lnosys  -Wl,-Map=build/test.map,--cref -Wl,--gc-sections -Wl,--verbose=2 -o build/test.elf
+GNU ld (GNU Binutils) 2.41
+  Supported emulations:
+   armelf
+opened script file STM32F446RETx_FLASH.ld
+using external linker script:
+==================================================
+/*
+******************************************************************************
+**
+
+**  File        : LinkerScript.ld
+**
+**  Author		: STM32CubeMX
+**
+**  Abstract    : Linker script for STM32F446RETx series
+**                512Kbytes FLASH and 128Kbytes RAM
+**
+**                Set heap size, stack size and stack location according
+**                to application requirements.
+**
+**                Set memory bank area and size if external memory is used.
+**
+**  Target      : STMicroelectronics STM32
+**
+**  Distribution: The file is distributed “as is,” without any warranty
+**                of any kind.
+**
+*****************************************************************************
+** @attention
+**
+** <h2><center>&copy; COPYRIGHT(c) 2019 STMicroelectronics</center></h2>
+**
+** Redistribution and use in source and binary forms, with or without modification,
+** are permitted provided that the following conditions are met:
+**   1. Redistributions of source code must retain the above copyright notice,
+**      this list of conditions and the following disclaimer.
+**   2. Redistributions in binary form must reproduce the above copyright notice,
+**      this list of conditions and the following disclaimer in the documentation
+**      and/or other materials provided with the distribution.
+**   3. Neither the name of STMicroelectronics nor the names of its contributors
+**      may be used to endorse or promote products derived from this software
+**      without specific prior written permission.
+**
+** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+** IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+** DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+** FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+** DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+** SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+** CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+** OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+**
+*****************************************************************************
+*/
+
+/* Entry Point */
+ENTRY(Reset_Handler)
+
+/* Specify the memory areas */
+MEMORY
+{
+RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 128K
+FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 512K
+}
+
+/* Highest address of the user mode stack */
+_estack = ORIGIN(RAM) + LENGTH(RAM);    /* end of RAM */
+/* Generate a link error if heap and stack don't fit into RAM */
+_Min_Heap_Size = 0x200;      /* required amount of heap  */
+_Min_Stack_Size = 0x400; /* required amount of stack */
+
+/* Define output sections */
+SECTIONS
+{
+  /* The startup code goes first into FLASH */
+  .isr_vector :
+  {
+    . = ALIGN(4);
+    KEEP(*(.isr_vector)) /* Startup code */
+    . = ALIGN(4);
+  } >FLASH
+
+  /* The program code and other data goes into FLASH */
+  .text :
+  {
+    . = ALIGN(4);
+    *(.text)           /* .text sections (code) */
+    *(.text*)          /* .text* sections (code) */
+    *(.glue_7)         /* glue arm to thumb code */
+    *(.glue_7t)        /* glue thumb to arm code */
+    *(.eh_frame)
+
+    KEEP (*(.init))
+    KEEP (*(.fini))
+
+    . = ALIGN(4);
+    _etext = .;        /* define a global symbols at end of code */
+  } >FLASH
+
+  /* Constant data goes into FLASH */
+  .rodata :
+  {
+    . = ALIGN(4);
+    *(.rodata)         /* .rodata sections (constants, strings, etc.) */
+    *(.rodata*)        /* .rodata* sections (constants, strings, etc.) */
+    . = ALIGN(4);
+  } >FLASH
+
+  .ARM.extab   : { *(.ARM.extab* .gnu.linkonce.armextab.*) } >FLASH
+  .ARM : {
+    __exidx_start = .;
+    *(.ARM.exidx*)
+    __exidx_end = .;
+  } >FLASH
+
+  .preinit_array     :
+  {
+    PROVIDE_HIDDEN (__preinit_array_start = .);
+    KEEP (*(.preinit_array*))
+    PROVIDE_HIDDEN (__preinit_array_end = .);
+  } >FLASH
+  .init_array :
+  {
+    PROVIDE_HIDDEN (__init_array_start = .);
+    KEEP (*(SORT(.init_array.*)))
+    KEEP (*(.init_array*))
+    PROVIDE_HIDDEN (__init_array_end = .);
+  } >FLASH
+  .fini_array :
+  {
+    PROVIDE_HIDDEN (__fini_array_start = .);
+    KEEP (*(SORT(.fini_array.*)))
+    KEEP (*(.fini_array*))
+    PROVIDE_HIDDEN (__fini_array_end = .);
+  } >FLASH
+
+  /* used by the startup to initialize data */
+  _sidata = LOADADDR(.data);
+
+  /* Initialized data sections goes into RAM, load LMA copy after code */
+  .data : 
+  {
+    . = ALIGN(4);
+    _sdata = .;        /* create a global symbol at data start */
+    *(.data)           /* .data sections */
+    *(.data*)          /* .data* sections */
+
+    . = ALIGN(4);
+    _edata = .;        /* define a global symbol at data end */
+  } >RAM AT> FLASH
+
+  
+  /* Uninitialized data section */
+  . = ALIGN(4);
+  .bss :
+  {
+    /* This is used by the startup in order to initialize the .bss secion */
+    _sbss = .;         /* define a global symbol at bss start */
+    __bss_start__ = _sbss;
+    *(.bss)
+    *(.bss*)
+    *(COMMON)
+
+    . = ALIGN(4);
+    _ebss = .;         /* define a global symbol at bss end */
+    __bss_end__ = _ebss;
+  } >RAM
+
+  /* User_heap_stack section, used to check that there is enough RAM left */
+  ._user_heap_stack :
+  {
+    . = ALIGN(8);
+    PROVIDE ( end = . );
+    PROVIDE ( _end = . );
+    . = . + _Min_Heap_Size;
+    . = . + _Min_Stack_Size;
+    . = ALIGN(8);
+  } >RAM
+
+  
+
+  /* Remove information from the standard libraries */
+  /DISCARD/ :
+  {
+    libc.a ( * )
+    libm.a ( * )
+    libgcc.a ( * )
+  }
+
+  .ARM.attributes 0 : { *(.ARM.attributes) }
+}
+
+
+
+==================================================
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: mode armelf
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
+attempt to open build/main.o succeeded
+build/main.o
+attempt to open build/MedianFilter.o succeeded
+build/MedianFilter.o
+attempt to open build/stm32f4xx_it.o succeeded
+build/stm32f4xx_it.o
+attempt to open build/stm32f4xx_hal_msp.o succeeded
+build/stm32f4xx_hal_msp.o
+attempt to open build/stm32f4xx_hal_tim.o succeeded
+build/stm32f4xx_hal_tim.o
+attempt to open build/stm32f4xx_hal_tim_ex.o succeeded
+build/stm32f4xx_hal_tim_ex.o
+attempt to open build/stm32f4xx_hal_uart.o succeeded
+build/stm32f4xx_hal_uart.o
+attempt to open build/stm32f4xx_hal_rcc.o succeeded
+build/stm32f4xx_hal_rcc.o
+attempt to open build/stm32f4xx_hal_rcc_ex.o succeeded
+build/stm32f4xx_hal_rcc_ex.o
+attempt to open build/stm32f4xx_hal_flash.o succeeded
+build/stm32f4xx_hal_flash.o
+attempt to open build/stm32f4xx_hal_flash_ex.o succeeded
+build/stm32f4xx_hal_flash_ex.o
+attempt to open build/stm32f4xx_hal_flash_ramfunc.o succeeded
+build/stm32f4xx_hal_flash_ramfunc.o
+attempt to open build/stm32f4xx_hal_gpio.o succeeded
+build/stm32f4xx_hal_gpio.o
+attempt to open build/stm32f4xx_hal_dma_ex.o succeeded
+build/stm32f4xx_hal_dma_ex.o
+attempt to open build/stm32f4xx_hal_dma.o succeeded
+build/stm32f4xx_hal_dma.o
+attempt to open build/stm32f4xx_hal_pwr.o succeeded
+build/stm32f4xx_hal_pwr.o
+attempt to open build/stm32f4xx_hal_pwr_ex.o succeeded
+build/stm32f4xx_hal_pwr_ex.o
+attempt to open build/stm32f4xx_hal_cortex.o succeeded
+build/stm32f4xx_hal_cortex.o
+attempt to open build/stm32f4xx_hal.o succeeded
+build/stm32f4xx_hal.o
+attempt to open build/stm32f4xx_hal_exti.o succeeded
+build/stm32f4xx_hal_exti.o
+attempt to open build/system_stm32f4xx.o succeeded
+build/system_stm32f4xx.o
+attempt to open build/startup_stm32f446xx.o succeeded
+build/startup_stm32f446xx.o
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libc_nano.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libc_nano.a failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-atexit.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-exit.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-findfp.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-fwalk.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-sprintf.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-stdio.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-memset.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-closer.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-reent.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-impure.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-lseekr.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-readr.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-writer.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-init.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-fini.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-lock.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-strlen.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-__atexit.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-__call_atexit.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-freer.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-mallocr.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-mlock.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-nano-svfprintf.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-nano-vfprintf_i.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-fflush.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-memmove.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-sbrkr.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-memchr.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-memcpy-stub.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-reallocr.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a)libc_a-msizer.o
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libm.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libm.a failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libnosys.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libnosys.a failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libnosys.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libnosys.a succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libnosys.a
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libnosys.a)close.o
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-closer.o): in function `_close_r':
+/build/arm-none-eabi-newlib/src/build-nano/arm-none-eabi/thumb/v7e-m+fp/hard/newlib/../../../../../../newlib-4.3.0.20230120/newlib/libc/reent/closer.c:47:(.text._close_r+0xc): warning: _close is not implemented and will always fail
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libnosys.a)lseek.o
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-lseekr.o): in function `_lseek_r':
+/build/arm-none-eabi-newlib/src/build-nano/arm-none-eabi/thumb/v7e-m+fp/hard/newlib/../../../../../../newlib-4.3.0.20230120/newlib/libc/reent/lseekr.c:49:(.text._lseek_r+0x10): warning: _lseek is not implemented and will always fail
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libnosys.a)read.o
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-readr.o): in function `_read_r':
+/build/arm-none-eabi-newlib/src/build-nano/arm-none-eabi/thumb/v7e-m+fp/hard/newlib/../../../../../../newlib-4.3.0.20230120/newlib/libc/reent/readr.c:49:(.text._read_r+0x10): warning: _read is not implemented and will always fail
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libnosys.a)sbrk.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libnosys.a)write.o
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a(libc_a-writer.o): in function `_write_r':
+/build/arm-none-eabi-newlib/src/build-nano/arm-none-eabi/thumb/v7e-m+fp/hard/newlib/../../../../../../newlib-4.3.0.20230120/newlib/libc/reent/writer.c:49:(.text._write_r+0x10): warning: _write is not implemented and will always fail
+(/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libnosys.a)_exit.o
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
+(/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a)_aeabi_uldivmod.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a)_udivmoddi4.o
+(/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a)_dvmd_tls.o
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libc_nano.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libc_nano.a failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a
+/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libc_nano.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libc_nano.a failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.so failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtend.o succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtend.o
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
+attempt to open libc.a failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libc.a failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a
+attempt to open libm.a failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libm.a failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a
+attempt to open libgcc.a failed
+attempt to open /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a succeeded
+/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
+/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: warning: build/test.elf has a LOAD segment with RWX permissions
+arm-none-eabi-size build/test.elf
+   text	   data	    bss	    dec	    hex	filename
+  13508	    160	   2928	  16596	   40d4	build/test.elf
+arm-none-eabi-objcopy -O ihex build/test.elf build/test.hex
+arm-none-eabi-objcopy -O binary -S build/test.elf build/test.bin	
