@@ -10,13 +10,21 @@ pub fn build(b: *std.Build) void {
     //b.verbose = true;
 
     const prj_name = "test";
+    const gcc_version = "13.2.1";
+    const gcc_path = "/opt/dev/xpack-arm-none-eabi-gcc-13.2.1-1.1/";
+    const gcc_arch = "v7e-m+fp";
 
-    const target = .{
-        .cpu_arch = .thumb, // ARMv7
-        .cpu_model = .{ .explicit = &std.Target.arm.cpu.cortex_m4 }, // STM32F446RE
-        .os_tag = .freestanding, // running in bare metal
-        .abi = .eabihf, // no libc (noneabi) with hardware floating point (hf)
+    const query: std.zig.CrossTarget = .{
+        .cpu_arch = .thumb,
+        .cpu_model = .{ .explicit = &std.Target.arm.cpu.cortex_m4 },
+        //.cpu_features_add = std.Target.arm.featureSet(&[_]std.Target.arm.Feature{std.Target.arm.Feature.}),
+        .os_tag = .freestanding,
+        .os_version_min = undefined,
+        .os_version_max = undefined,
+        .abi = .eabihf,
+        .glibc_version = null,
     };
+    const target = b.resolveTargetQuery(query);
     const asm_sources = [_][]const u8{"startup_stm32f446xx.s"};
 
     //const asm_flags = [_][]const u8{
@@ -57,11 +65,12 @@ pub fn build(b: *std.Build) void {
     };
     // "-Wno-unused-parameter",
     const c_sources_drivers_compile_flags = [_][]const u8{
+        "-Og",
+        "-gdwarf-2",
+        "-ggdb3",
         "-std=gnu11",
         "-DUSE_HAL_DRIVER",
         "-DSTM32F446xx",
-        "-ffunction-sections",
-        "-fdata-sections",
         "-nostdlib",
         "-nostdinc",
         "-Wall",
@@ -80,11 +89,11 @@ pub fn build(b: *std.Build) void {
     const c_sources_app = [_][]const u8{
         "./Core/Src/main.c",
         "./Core/Src/MedianFilter.c",
+        "./Core/Src/sysmem.c",
+        "./Core/Src/syscalls.c",
     };
 
-    //const c_compile_flags = [_][]const u8{ "-DUSE_HAL_DRIVER", "-DSTM32F446xx", "-std=gnu11", "-Wall", "-Werror", "-Wextra", "-pedantic", "-fstack-usage", "-fdata-sections", "-ffunction-sections" };
-    const c_compile_flags = [_][]const u8{ "-DUSE_HAL_DRIVER", "-DSTM32F446xx", "-std=gnu11", "-Wall", "-Wextra", "-pedantic", "-fstack-usage", "-fdata-sections", "-ffunction-sections" };
-    //const c_compile_flags = [_][]const u8{ "-DUSE_HAL_DRIVER", "-DSTM32F446xx", "-fstack-usage", "-fdata-sections", "-ffunction-sections" };
+    const c_compile_flags = [_][]const u8{ "-Og", "-gdwarf-2", "-ggdb3", "-DUSE_HAL_DRIVER", "-DSTM32F446xx", "-std=gnu11", "-Wall", "-Wextra", "-pedantic", "-fstack-usage" };
 
     // Standard optimization options allow the person running `zig build` to select
     // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall. Here we do not
@@ -95,50 +104,52 @@ pub fn build(b: *std.Build) void {
         .name = prj_name ++ ".elf",
         .target = target,
         .optimize = optimize, // use optimization given by user
-        //.strip = false, // do not strip debug symbols
+        .strip = false, // do not strip debug symbols
         .linkage = .static, // static linking
         .link_libc = false, // will link against newlib_nano
         .single_threaded = true, // single core cpu
     });
 
-    // Add necessary libraries and link to them
-    elf.addIncludePath(.{ .path = "/usr/arm-none-eabi/include" });
-    elf.addIncludePath(.{ .path = "/usr/arm-none-eabi/include/newlib-nano" });
-    elf.addObjectFile(.{ .path = "/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/libnosys.a" });
-    elf.addObjectFile(.{ .path = "/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc_nano.a" });
-    elf.addObjectFile(.{ .path = "/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a" });
-    //elf.addObjectFile(.{ .path = "/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/libgcc.a" });
-    //elf.addObjectFile(.{ .path = "/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/crti.o" });
-    //elf.addObjectFile(.{ .path = "/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/crtbegin.o" });
+    //////////////////////////////////////////////////////////////////
+    // Manually including libraries bundled with arm-none-eabi-gcc
+    elf.addLibraryPath(.{ .path = gcc_path ++ "arm-none-eabi/lib/thumb/" ++ gcc_arch ++ "/hard" });
+    elf.addLibraryPath(.{ .path = gcc_path ++ "lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ gcc_arch ++ "/hard" });
+    elf.addSystemIncludePath(.{ .path = gcc_path ++ "arm-none-eabi/include" });
+    //elf.linkSystemLibrary("nosys"); // "-lnosys",
+    //elf.linkSystemLibrary("c_nano"); // "-lc_nano"
+    elf.linkSystemLibrary("g_nano"); // "-lg_nano" //NOTE: Same as c_nano but with debug symbol
+    elf.linkSystemLibrary("m"); // "-lm"
+    elf.linkSystemLibrary("gcc"); // "-lgcc"
+    //elf.forceUndefinedSymbol("_printf_float"); // Allow float formating (printf, sprintf, ...)
 
-    // C runtime 0 contains _start function, initializes stack and libc
-    // runtime, then calls _main
-    // Cruntime 0: This object is expected to contain the _start symbol which
-    // takes care of bootstrapping the initial execution of the program.
-    // this object initializes very early ABI requirements
-    // (like the stack or frame pointer), setting up the argc/argv/env values, and
-    // then passing pointers to the init/fini/main funcs to the internal libc main
-    // which in turn does more general bootstrapping before finally calling the real
-    // main function.
-    elf.addObjectFile(.{ .path = "/usr/arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o" });
+    // Manually include C runtime objects bundled with arm-none-eabi-gcc
+    elf.addObjectFile(.{ .path = gcc_path ++ "arm-none-eabi/lib/thumb/" ++ gcc_arch ++ "/hard/crt0.o" });
+    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ gcc_arch ++ "/hard/crti.o" });
+    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ gcc_arch ++ "/hard/crtbegin.o" });
+    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ gcc_arch ++ "/hard/crtend.o" });
+    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ gcc_arch ++ "/hard/crtn.o" });
 
-    // crti (cruntime init) Defines the function prologs for the .init and
-    // .fini sections (with the _init and _fini symbols respectively).  This
-    // way they can be called directly. They contain constructors and destructors
-    // for global structs
-    elf.addObjectFile(.{ .path = "/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o" });
-    //  Defines the function epilogs for the .init/.fini sections
-    //elf.addObjectFile(.{ .path = "/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o" });
-
-    // GCC uses this to find the start of the constructors
-    elf.addObjectFile(.{ .path = "/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o" });
-    // GCC uses this to find the start of the destructors.
-    //elf.addObjectFile(.{ .path = "/usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtend.o" });
+    //////////////////////////////////////////////////////////////////
+    elf.entry = .{ .symbol_name = "Reset_Handler" }; // Set Entry Point of the firmware (Already set in the linker script)
+    elf.want_lto = false; // -flto
+    elf.link_data_sections = true; // -fdata-sections
+    elf.link_function_sections = true; // -ffunction-sections
+    elf.link_gc_sections = true; // -Wl,--gc-sections
 
     // Add C source files
-    elf.addCSourceFiles(&c_sources_drivers, &c_sources_drivers_compile_flags);
-    elf.addCSourceFiles(&c_sources_core, &c_compile_flags);
-    elf.addCSourceFiles(&c_sources_app, &c_compile_flags);
+
+    elf.addCSourceFiles(.{
+        .files = &c_sources_drivers,
+        .flags = &c_sources_drivers_compile_flags,
+    });
+    elf.addCSourceFiles(.{
+        .files = &c_sources_core,
+        .flags = &c_compile_flags,
+    });
+    elf.addCSourceFiles(.{
+        .files = &c_sources_app,
+        .flags = &c_compile_flags,
+    });
 
     // Add Assembly sources
     for (asm_sources) |path| {
@@ -149,12 +160,25 @@ pub fn build(b: *std.Build) void {
         elf.addIncludePath(.{ .path = path });
     }
 
-    // Set Entry Point of the firmware
-    elf.entry_symbol_name = "Reset_Handler";
-
     // Set linker script file
     elf.setLinkerScriptPath(.{ .path = "./STM32F446RETx_FLASH.ld" });
-    elf.setVerboseLink(true);
+    elf.setVerboseLink(true); //NOTE: Generate linker error : 'https://github.com/ziglang/zig/issues/19410'
+
+    // Copy the bin out of the elf
+    const bin = b.addObjCopy(elf.getEmittedBin(), .{
+        .format = .bin,
+    });
+    bin.step.dependOn(&elf.step);
+    const copy_bin = b.addInstallBinFile(bin.getOutput(), prj_name ++ ".bin");
+    b.default_step.dependOn(&copy_bin.step);
+
+    // Copy the bin out of the elf
+    const hex = b.addObjCopy(elf.getEmittedBin(), .{
+        .format = .hex,
+    });
+    hex.step.dependOn(&elf.step);
+    const copy_hex = b.addInstallBinFile(hex.getOutput(), prj_name ++ ".hex");
+    b.default_step.dependOn(&copy_hex.step);
 
     b.default_step.dependOn(&elf.step);
     b.installArtifact(elf);
