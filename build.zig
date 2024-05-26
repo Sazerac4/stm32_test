@@ -12,7 +12,12 @@ pub fn build(b: *std.Build) void {
     const prj_name = "test";
     const gcc_version = "13.2.1";
     const gcc_path = "/opt/dev/xpack-arm-none-eabi-gcc-13.2.1-1.1/";
-    const gcc_arch = "v7e-m+fp";
+
+    //(-mfloat-abi=<select>)
+    //soft   => v7e-m/nofp
+    //softfp => v7e-m+fp/softfp
+    //hard   => v7e-m+fp/hard
+    const float_abi_opt = "v7e-m+fp/hard";
 
     const query: std.zig.CrossTarget = .{
         .cpu_arch = .thumb,
@@ -26,16 +31,6 @@ pub fn build(b: *std.Build) void {
     };
     const target = b.resolveTargetQuery(query);
     const asm_sources = [_][]const u8{"startup_stm32f446xx.s"};
-
-    //const asm_flags = [_][]const u8{
-    //    "-fdata-sections",
-    //    "-ffunction-sections",
-    //    "-Wall",
-    //    "-Wextra",
-    //    "-Werror",
-    //    "-pedantic",
-    //    "-fstack-usage"
-    //};
 
     const c_includes = [_][]const u8{
         "./Core/Inc",
@@ -112,22 +107,24 @@ pub fn build(b: *std.Build) void {
 
     //////////////////////////////////////////////////////////////////
     // Manually including libraries bundled with arm-none-eabi-gcc
-    elf.addLibraryPath(.{ .path = gcc_path ++ "arm-none-eabi/lib/thumb/" ++ gcc_arch ++ "/hard" });
-    elf.addLibraryPath(.{ .path = gcc_path ++ "lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ gcc_arch ++ "/hard" });
+    elf.addLibraryPath(.{ .path = gcc_path ++ "arm-none-eabi/lib/thumb/" ++ float_abi_opt });
+    elf.addLibraryPath(.{ .path = gcc_path ++ "lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ float_abi_opt });
     elf.addSystemIncludePath(.{ .path = gcc_path ++ "arm-none-eabi/include" });
     //elf.linkSystemLibrary("nosys"); // "-lnosys",
     //elf.linkSystemLibrary("c_nano"); // "-lc_nano"
     elf.linkSystemLibrary("g_nano"); // "-lg_nano" //NOTE: Same as c_nano but with debug symbol
     elf.linkSystemLibrary("m"); // "-lm"
     elf.linkSystemLibrary("gcc"); // "-lgcc"
-    //elf.forceUndefinedSymbol("_printf_float"); // Allow float formating (printf, sprintf, ...)
+
+    // Allow float formating (printf, sprintf, ...)
+    //elf.forceUndefinedSymbol("_printf_float"); // GCC equivalent : "-u _printf_float"
 
     // Manually include C runtime objects bundled with arm-none-eabi-gcc
-    elf.addObjectFile(.{ .path = gcc_path ++ "arm-none-eabi/lib/thumb/" ++ gcc_arch ++ "/hard/crt0.o" });
-    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ gcc_arch ++ "/hard/crti.o" });
-    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ gcc_arch ++ "/hard/crtbegin.o" });
-    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ gcc_arch ++ "/hard/crtend.o" });
-    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ gcc_arch ++ "/hard/crtn.o" });
+    elf.addObjectFile(.{ .path = gcc_path ++ "arm-none-eabi/lib/thumb/" ++ float_abi_opt ++ "/crt0.o" });
+    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ float_abi_opt ++ "/crti.o" });
+    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ float_abi_opt ++ "/crtbegin.o" });
+    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ float_abi_opt ++ "/crtend.o" });
+    elf.addObjectFile(.{ .path = gcc_path ++ "/lib/gcc/arm-none-eabi/" ++ gcc_version ++ "/thumb/" ++ float_abi_opt ++ "/crtn.o" });
 
     //////////////////////////////////////////////////////////////////
     elf.entry = .{ .symbol_name = "Reset_Handler" }; // Set Entry Point of the firmware (Already set in the linker script)
